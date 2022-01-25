@@ -1,0 +1,65 @@
+﻿using Microsoft.Extensions.Logging;
+using NetCore.Infrastructure.cache;
+using NetCore.IServices;
+using NetCore.Model.DTO.Response;
+using NetCore.Model.DTO.SystemModels;
+using NetCore.Repository;
+using NetCore.Repository.Entitys.Systems;
+using NetCore.Repository.Interface;
+using System;
+
+namespace NetCore.Services.BaseInfo
+{
+    public class LoginServices : BaseServices<User>, ILoginServices
+    {
+        private readonly ICacheContext _cacheContext;
+        private readonly ILogger<LoginServices> _iLogger;
+
+        public LoginServices(IRespository<User> respository, ICacheContext cacheContext, ILogger<LoginServices> logger) : base(respository)
+        {
+            _cacheContext = cacheContext;
+            _iLogger = logger;
+        }
+
+        public Response<LoginResponseOutput> Login(LoginRequestInput req)
+        {
+            var result = new Response<LoginResponseOutput>();
+            try
+            {
+                var isExist = Respository.FindSingle(m => m.UserName == req.UserName &&
+                m.Password == req.Password && m.AppId == req.AppId);
+                if (isExist != null)
+                {
+                    //登录成功 
+                    var currentSession = new UserAuthSession
+                    {
+                        UserName = req.UserName,
+                        AppId = req.AppId,
+                        Token = Guid.NewGuid().ToString().GetHashCode().ToString("x"),
+                        CreateTime = DateTime.Now,
+                        IpAddress = ""
+                    };
+                    _cacheContext.Set<UserAuthSession>(currentSession.Token, currentSession, DateTime.Now.AddDays(10));
+                    _iLogger.LogInformation("登录信息写入Session成功");
+                    var response = new LoginResponseOutput();
+                    response.Token = currentSession.Token;
+
+                    result.Result = response;
+
+                }
+                else
+                {
+                    result.Message = "登录失败，请检查用户名或者密码是否正确";
+                    result.Result = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+    }
+}

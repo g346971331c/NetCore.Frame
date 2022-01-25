@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetCore.Frame</name>
+    </assembly>
+    <members>
+        <member name="T:NetCore.Frame.Controllers.LoginController">
+            <summary>
+            登录相关控制器
+            </summary>
+        </member>
+        <member name="M:NetCore.Frame.Controllers.LoginController.Login(NetCore.Model.DTO.SystemModels.LoginRequestInput)">
+            <summary>
+            测试接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore.Frame.Controllers.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:NetCore.Frame.Controllers.UserController.GetUserList(NetCore.Model.DTO.SystemModels.User.GetUserListInput)">
+            <summary>
+            用户列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore.Frame.Controllers.UserController.GetUserPageList(NetCore.Model.DTO.SystemModels.User.GetUserListByPageInput)">
+            <summary>
+            用户分页列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore.Frame.Controllers.UserController.GetAsyncUserPageList(NetCore.Model.DTO.SystemModels.User.GetUserListByPageInput)">
+            <summary>
+            获取分页数据（异步）
+            </summary>
+            <param name="input"></param>
+            <returns></returns> 
+        </member>
+        <member name="M:NetCore.Frame.Controllers.UserController.Add(NetCore.Model.DTO.SystemModels.User.AddUserInput)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore.Frame.Filter.ApiFilter">
+            <summary>
+            控制器方法过滤器
+            </summary>
+        </member>
+        <member name="M:NetCore.Frame.Filter.ApiFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            控制器方法调用后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:NetCore.Frame.Filter.ApiFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            控制器方法调用前执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:NetCore.Frame.Filter.GlobalHttpHeaderOperationFilter">
+            <summary>
+            全局过滤器
+            </summary>
+        </member>
+        <member name="T:NetCore.Frame.Profile.Define">
+            <summary>
+            常用变量配置类
+            </summary>
+        </member>
+        <member name="M:NetCore.Frame.Profile.ExceptionInfo.CatchExp(NetCore.Model.DTO.Response.Response@,System.Exception)">
+            <summary>
+            异常处理
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="res"></param>
+            <param name="ex"></param>
+        </member>
+    </members>
+</doc>
