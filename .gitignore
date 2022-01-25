@@ -1,0 +1,10 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/NetCore.Services/obj
+/NetCore.Repository/obj
+/NetCore.Model.DTO/obj
+/NetCore.IServices/obj
+/NetCore.Infrastructure/obj
+/NetCore.Frame
