@@ -40,13 +40,13 @@ namespace NetCore.Frame.Filter
         /// </summary>
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
-        { 
+        {
             var descrip = (Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor;
             var allowAnoy = descrip.MethodInfo.GetCustomAttributes(inherit: true).OfType<AllowAnonymousAttribute>().Any();
             if (allowAnoy) //允许匿名访问
                 return;
             //没有匿名特性，则要验证是否登录
-            if (true)//TODO
+            if (!_loginServices.CheckLogin())//TODO
             {
                 context.HttpContext.Response.StatusCode = 401;
                 context.Result = new JsonResult(new Response

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using NetCore.Infrastructure.cache;
 using NetCore.IServices;
@@ -27,7 +28,8 @@ namespace NetCore.Services.AutoFacExtension
             ////要注入的程序集
             //Assembly ins = Assembly.Load("NetCore.Infrastructure");
             //builder.RegisterTypes(Assembly.GetExecutingAssembly().GetTypes());
-             
+            builder.RegisterType(typeof(HttpContextAccessor)).As(typeof(IHttpContextAccessor));
+
 
 
             Assembly services = Assembly.Load("NetCore.Services");

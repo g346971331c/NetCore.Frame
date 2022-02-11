@@ -63,6 +63,10 @@ namespace NetCore.Frame
             }
             #endregion
 
+            #region Redis
+
+
+            #endregion
             // services.AddAutoMapper(typeof(AutoMapperConfig));
 
             //控制器方法过滤器

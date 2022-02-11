@@ -11,5 +11,13 @@ namespace NetCore.IServices
         /// </summary>
         /// <returns></returns>
         public Response<LoginResponseOutput> Login(LoginRequestInput req);
+
+        /// <summary>
+        /// 检查登录状态
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        bool CheckLogin(string token = "", string other = "");
     }
 }
